@@ -1,7 +1,10 @@
-import React from "react";
+import LoginPage from "@/components/auth/LoginPage";
 
-function LoginPage() {
-  return <div>LoginPage</div>;
+export const metadata = {
+  title: "ورود | اکسینا",
+  description: "ورود به حساب کاربری اکسینا",
+};
+
+export default function Page() {
+  return <LoginPage />;
 }
-
-export default LoginPage;
