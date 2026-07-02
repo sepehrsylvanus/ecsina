@@ -8,7 +8,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      {children}
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
