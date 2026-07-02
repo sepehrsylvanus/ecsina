@@ -4,13 +4,12 @@ import Footer from "../UI/Footer";
 
 function MainLayout({ children }) {
   return (
-    <body className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="my-10 ">{children}</main>
+      <main className="flex-1">{children}</main>
       <Footer />
-    </body>
+    </div>
   );
 }
 
 export default MainLayout;
-

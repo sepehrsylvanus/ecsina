@@ -2,19 +2,21 @@ import Image from "next/image";
 
 const Category = ({ category }) => {
   return (
-    <div className="md:flex md:flex-col md:gap-9 md:min-w-[240px]  md:border md:border-primary-7 md:p-10 md:pb-16 md:rounded-4xl md:bg-secondary-2 md:hover:shadow-2xl  transition-all duration-300 cursor-pointer">
-      <div className="px-4.5 min-w-32 md:px-8 md:py-7 rounded-md gradient-cart-icon flex flex-col gap-2 items-center justify-center min-h-24">
-        <div className="relative w-9 h-9 md:w-16 md:h-16 ">
-          <Image fill src={category.icon} alt={category.title} />
-        </div>
-
-        <p className="block md:hidden text-white text-center text-sm font-semibold">
-          {category.title}
-        </p>
+    <div className="w-full max-w-[220px] bg-white border-2 border-primary-7/40 rounded-2xl p-6 flex flex-col items-center justify-center gap-6 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer">
+      {/* Icon box */}
+      <div className="w-24 h-24 md:w-28 md:h-28 bg-primary-7 rounded-2xl flex items-center justify-center">
+        <Image
+          src={category.icon}
+          alt={category.title}
+          width={60}
+          height={60}
+          className="brightness-0 invert"
+        />
       </div>
-      <p className="hidden md:block text-center text-black text-2xl font-bold">
+      {/* Title */}
+      <h4 className="text-black text-lg md:text-xl font-bold text-center">
         {category.title}
-      </p>
+      </h4>
     </div>
   );
 };

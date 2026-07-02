@@ -1,42 +1,32 @@
 import Image from "next/image";
-import Link from "next/link";
+import { GoArrowUpLeft } from "react-icons/go";
 
 const Product = ({ product }) => {
   return (
-    <Link href={`/products/${product.id}`}>
-      <div className=" group bg-white shadow-icon hover:shadow-md rounded-4xl  transition-all duration-300 cursor-pointer">
-        {/* Image section */}
-        <div className="relative w-full  aspect-[4/3]">
-          <Image
-            src={product.main_image || "/assets/images/Product.png"}
-            alt={product.title || "Product Image"}
-            fill
-            quality={90}
-            className="object-cover rounded-t-4xl"
-            priority
-          />
-        </div>
-        {/* Content section */}
-        <div className="px-6 pt-6 pb-3 ">
-          <h4 className="text-black font-semibold text-xs md:text-2xl mb-2">
-            {product.title}
-          </h4>
-
-          <p className="text-black text-[10px] md:text-base font-normal max-w-[85%]">
-            {product.body}
-          </p>
-          {/* Button */}
-          <button className="relative w-8 h-8 mr-[88%] md:mr-[85%]  mb-2 md:w-10 md:h-10 shadow-invite-cart rounded-2xl ">
-            <Image
-              src={"/assets/icons/ArrowProduct.svg"}
-              alt="Arrow"
-              fill
-              className="group-hover:rotate-45 transition-all duration-300"
-            />
-          </button>
-        </div>
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 flex flex-col">
+      {/* Product Image */}
+      <div className="w-full h-56 bg-gradient-to-br from-purple-200 via-pink-100 to-purple-100 flex items-center justify-center p-4">
+        <Image
+          src={product.image}
+          alt={product.title}
+          width={180}
+          height={180}
+          className="object-contain"
+        />
       </div>
-    </Link>
+      {/* Product Info */}
+      <div className="p-4 flex flex-col gap-3 flex-1">
+        <h3 className="text-black text-lg font-bold text-center">
+          {product.title}
+        </h3>
+        <p className="text-gray-700 text-sm text-center leading-6 flex-1">
+          {product.description}
+        </p>
+        <button className="self-start text-primary-7 hover:text-primary-8 transition-colors">
+          <GoArrowUpLeft size={22} />
+        </button>
+      </div>
+    </div>
   );
 };
 
