@@ -35,10 +35,8 @@ function LoginPage() {
 
     setLoading(true);
 
-    // شبیه‌سازی درخواست ارسال کد
     setTimeout(() => {
       setLoading(false);
-      // ذخیره شماره در localStorage یا state management
       if (typeof window !== "undefined") {
         localStorage.setItem("phone", phone);
       }
@@ -61,7 +59,7 @@ function LoginPage() {
           {/* Quick Access Login */}
           <Link
             href="/quick-login"
-            className="flex items-center gap-2 text-primary-7 hover:text-primary-8 transition-colors font-semibold text-sm md:text-base"
+            className="flex items-center gap-2 text-primary-7 hover:text-primary-8 transition-colors font-semibold text-sm md:text-base border border-primary-7/30 hover:border-primary-7 rounded-lg px-3 py-1.5"
           >
             <span>ورود با دسترسی سریع</span>
             <HiOutlineLogin size={22} />
@@ -70,10 +68,10 @@ function LoginPage() {
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="text-gray-600 hover:text-black transition-colors cursor-pointer"
+            className="text-gray-600 hover:text-black transition-colors cursor-pointer border border-gray-300 hover:border-gray-500 rounded-lg p-1"
             aria-label="بستن"
           >
-            <IoClose size={28} />
+            <IoClose size={26} />
           </button>
         </div>
 
@@ -103,20 +101,19 @@ function LoginPage() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
-          {/* Phone Input Box */}
-          <div className="bg-secondary-1 rounded-2xl p-4 md:p-5 border border-transparent focus-within:border-primary-7 transition-colors">
-            <label
-              htmlFor="phone"
-              className="block text-black font-bold text-sm md:text-base mb-2 text-right"
-            >
+          {/* Phone Input Box - now a label so entire area is clickable */}
+          <label
+            htmlFor="phone"
+            className="block cursor-text bg-secondary-1 rounded-2xl p-4 md:p-5 border-2 border-gray-300 hover:border-primary-7/50 focus-within:border-primary-7 focus-within:shadow-[0_0_0_3px_rgba(0,24,188,0.1)] transition-all duration-200"
+          >
+            <span className="block text-black font-bold text-sm md:text-base mb-2 text-right">
               شماره تلفن همراه
-            </label>
+            </span>
             <input
               id="phone"
               type="tel"
               value={phone}
               onChange={(e) => {
-                // فقط اعداد
                 const value = e.target.value.replace(/\D/g, "");
                 setPhone(value);
                 if (error) setError("");
@@ -126,7 +123,7 @@ function LoginPage() {
               dir="rtl"
               className="w-full bg-transparent border-none outline-none text-primary-7 placeholder:text-primary-7/60 text-sm md:text-base text-right"
             />
-          </div>
+          </label>
 
           {/* Error message */}
           {error && (
@@ -137,7 +134,7 @@ function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-6 bg-primary-7 hover:bg-primary-8 disabled:opacity-70 text-white font-bold py-4 rounded-2xl text-base md:text-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
+            className="w-full mt-6 bg-primary-7 hover:bg-primary-8 disabled:opacity-70 text-white font-bold py-4 rounded-2xl text-base md:text-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 border-2 border-primary-9/20 hover:border-primary-9/50"
           >
             <GoArrowUpLeft size={20} />
             <span>{loading ? "در حال ارسال..." : "ارسال کد"}</span>
