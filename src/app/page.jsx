@@ -1,4 +1,3 @@
-import AllComments from "@/components/home/AllComments";
 import Guidance from "@/components/home/Guidance";
 import HeroBanner from "@/components/home/HeroBanner";
 import OurServices from "@/components/home/OurServices";
@@ -8,6 +7,7 @@ import "./globals.css";
 import "keen-slider/keen-slider.min.css";
 import MainLayout from "@/components/layout/MainLayout";
 import HeaderLink from "@/components/home/HeaderLink";
+import AllComments from "@/components/home/AllComments";
 
 export const metadata = {
   title: "صفحه اصلی | اکسینا",

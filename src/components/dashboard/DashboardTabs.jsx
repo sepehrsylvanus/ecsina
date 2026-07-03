@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HiOutlinePencilSquare, HiOutlineArchiveBox } from "react-icons/hi2";
-import { IoHomeOutline, IoHome } from "react-icons/io5";
+import { IoHome } from "react-icons/io5";
 import { LuCopy } from "react-icons/lu";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
@@ -14,8 +14,8 @@ const tabs = [
   { id: 5, icon: FaRegPenToSquare, label: "یادداشت‌ها" },
 ];
 
-function DashboardTabs() {
-  const [activeTab, setActiveTab] = useState(2); // پیش‌فرض خانه فعال
+function DashboardTabs({ activeTabId = 2 }) {
+  const [activeTab, setActiveTab] = useState(activeTabId);
 
   return (
     <div className="flex flex-col items-center py-4">
