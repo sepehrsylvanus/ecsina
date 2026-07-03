@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import MobileMenu from "./MobileMenu";
 import Button from "./Button";
@@ -45,10 +45,10 @@ const navigationLinks = [
 
 const Navbar = () => {
   // for show links in dropdown
-  const [openId, setOpenId] = React.useState(null)
+  const [openId, setOpenId] = React.useState(null);
   const handleToggle = (id) => {
-    setOpenId(openId === id ? null : id)
-  }
+    setOpenId(openId === id ? null : id);
+  };
   return (
     <header id="header" className="container mt-4 md:mt-10">
       {/* Desktop */}
@@ -93,6 +93,7 @@ const Navbar = () => {
                           onClick={() => handleToggle(item.id)}
                         >
                           <Image
+                            alt="item"
                             src={item.icon}
                             width={20}
                             height={20}
@@ -102,10 +103,7 @@ const Navbar = () => {
                         </button>
                         {openId === item.id && (
                           <div className="absolute top-10 left-60">
-                            <Link
-                              href='#'
-                              className="text-primary-7"
-                            >
+                            <Link href="#" className="text-primary-7">
                               {item.title}
                             </Link>
                           </div>
