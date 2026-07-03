@@ -1,7 +1,10 @@
-import React from "react";
+import DashboardPage from "@/components/dashboard/DashboardPage";
 
-function page() {
-  return <div></div>;
+export const metadata = {
+  title: "داشبورد | اکسینا",
+  description: "داشبورد کاربری اکسینا",
+};
+
+export default function Page() {
+  return <DashboardPage />;
 }
-
-export default page;
