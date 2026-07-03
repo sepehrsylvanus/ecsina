@@ -37,12 +37,27 @@ const SignupPage = () => {
               خوش آمدید.
             </p>
           </div>
-          <Link href={"/"} className="p-6 absolute  -top-32 left-[-25%] md:left-0 md:top-0 md:relative">
-            <IoClose className="md:text-black  text-white hover:opacity-60" size={25} />
+          <Link
+            href={"/"}
+            className="p-6 absolute  -top-32 left-[-25%] md:left-0 md:top-0 md:relative"
+          >
+            <IoClose
+              className="md:text-black  text-white hover:opacity-60"
+              size={25}
+            />
           </Link>
         </div>
 
         <SignupForm />
+        <div className="mt-4 text-center text-gray-600">
+          <span>حساب کاربری دارید؟ </span>
+          <Link
+            href="/auth/login"
+            className="text-primary-7 font-semibold hover:opacity-70"
+          >
+            وارد شوید
+          </Link>
+        </div>
       </section>
     </main>
   );

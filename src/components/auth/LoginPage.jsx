@@ -141,8 +141,19 @@ function LoginPage() {
           </button>
         </form>
 
+        {/* Register Link */}
+        <div className="mt-6 text-center text-gray-600">
+          <span>حساب کاربری ندارید؟ </span>
+          <Link
+            href="/auth"
+            className="text-primary-7 font-semibold hover:opacity-70"
+          >
+            ثبت نام کنید
+          </Link>
+        </div>
+
         {/* Support Phone */}
-        <div className="mt-8 text-left">
+        <div className="mt-6 text-left">
           <p className="text-gray-700 text-sm md:text-base">
             تلفن پشتیبانی:{" "}
             <span className="font-semibold" dir="ltr">
