@@ -8,9 +8,9 @@ function RecentActivitiesPage() {
   return (
     <div className="min-h-screen bg-secondary-1 pb-16">
       {/* تب‌های اصلی */}
-      <DashboardTabs activeTabId={2} />
+      <DashboardTabs />
 
-      {/* دسترسی سریع - با تب فعال "فعالیت‌های اخیر" */}
+      {/* دسترسی سریع - در زیرصفحات home باقی می‌ماند */}
       <QuickActions activeId={2} />
 
       {/* Timeline فعالیت‌های اخیر */}

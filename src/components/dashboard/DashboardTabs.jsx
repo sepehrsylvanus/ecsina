@@ -1,21 +1,29 @@
 "use client";
 
-import { useState } from "react";
-import { HiOutlinePencilSquare, HiOutlineArchiveBox } from "react-icons/hi2";
+import { useRouter, usePathname } from "next/navigation";
+import { HiOutlineDocumentText, HiOutlineArchiveBox } from "react-icons/hi2";
 import { IoHome } from "react-icons/io5";
 import { LuCopy } from "react-icons/lu";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 const tabs = [
-  { id: 1, icon: HiOutlinePencilSquare, label: "ویرایش" },
-  { id: 2, icon: IoHome, label: "خانه" },
-  { id: 3, icon: LuCopy, label: "قالب‌ها" },
-  { id: 4, icon: HiOutlineArchiveBox, label: "آرشیو" },
-  { id: 5, icon: FaRegPenToSquare, label: "یادداشت‌ها" },
+  { id: 1, icon: HiOutlineDocumentText, label: "ویرایش", href: "/user/edit" },
+  { id: 2, icon: IoHome, label: "خانه", href: "/user" },
+  { id: 3, icon: LuCopy, label: "قالب‌ها", href: "/user/templates" },
+  { id: 4, icon: HiOutlineArchiveBox, label: "آرشیو", href: "/user/archive" },
+  { id: 5, icon: FaRegPenToSquare, label: "یادداشت‌ها", href: "/user/notes" },
 ];
 
-function DashboardTabs({ activeTabId = 2 }) {
-  const [activeTab, setActiveTab] = useState(activeTabId);
+function DashboardTabs() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const getActiveTabId = () => {
+    const currentTab = tabs.find((tab) => tab.href === pathname);
+    return currentTab ? currentTab.id : 2;
+  };
+
+  const activeTab = getActiveTabId();
 
   return (
     <div className="flex flex-col items-center py-4">
@@ -27,7 +35,7 @@ function DashboardTabs({ activeTabId = 2 }) {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => router.push(tab.href)}
               className={`flex flex-col items-center gap-2 cursor-pointer transition-all duration-200 ${
                 isActive
                   ? "text-primary-7"

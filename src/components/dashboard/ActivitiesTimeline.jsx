@@ -26,6 +26,11 @@ const activities = [
 ];
 
 function ActivitiesTimeline() {
+  // محاسبه موقعیت مرکز اولین و آخرین دایره بر اساس flex-1
+  const itemWidth = 100 / activities.length;
+  const firstCenter = itemWidth / 2;
+  const lastCenter = 100 - itemWidth / 2;
+
   return (
     <div className="px-4 md:px-8 mt-12 md:mt-16">
       {/* Title */}
@@ -37,9 +42,24 @@ function ActivitiesTimeline() {
       <div className="max-w-5xl mx-auto">
         {/* Circles + Connecting Line */}
         <div className="relative flex items-start justify-between">
-          {/* خط اتصال بین دایره‌ها (خط چین) */}
+          {/* خط اتصال بین دایره‌ها (خط چین) - از مرکز دایره اول تا مرکز دایره آخر */}
           <div
-            className="absolute top-6 md:top-8 left-[10%] right-[10%] border-t-2 border-dashed border-primary-7/50 -z-0"
+            className="absolute top-6 md:top-8 border-t-2 border-dashed border-primary-7/50 -z-0"
+            style={{ left: `${firstCenter}%`, right: `${100 - lastCenter}%` }}
+            aria-hidden="true"
+          />
+
+          {/* دایره تزئینی سمت چپ خط */}
+          <div
+            className="absolute w-2.5 h-2.5 md:w-3 md:h-3 bg-primary-7 rounded-full z-10 top-6 md:top-8 -translate-y-1/2"
+            style={{ left: `${firstCenter}%` }}
+            aria-hidden="true"
+          />
+
+          {/* دایره تزئینی سمت راست خط */}
+          <div
+            className="absolute w-2.5 h-2.5 md:w-3 md:h-3 bg-primary-7 rounded-full z-10 top-6 md:top-8 -translate-y-1/2"
+            style={{ left: `${lastCenter}%` }}
             aria-hidden="true"
           />
 
