@@ -5,6 +5,7 @@ import DashboardTabs from "./DashboardTabs";
 import CategoryTabs from "./CategoryTabs";
 import DocumentsTable from "./DocumentTable";
 import DocumentsList from "./DocumentsList";
+import RelatedTrainings from "./RelatedTrainings";
 
 function EditPage() {
   const searchParams = useSearchParams();
@@ -15,9 +16,14 @@ function EditPage() {
       <DashboardTabs />
       <CategoryTabs />
 
-      {/* Show DocumentsList for "دسته بندی ها" tab (id: "new") */}
-      {/* Show DocumentsTable for "دسته بندی جدید" tab (id: "categories") */}
-      {activeTab === "categories" ? <DocumentsList /> : <DocumentsTable />}
+      {/* Show DocumentsList for "دسته بندی ها" tab */}
+      {activeTab === "categories" && <DocumentsList />}
+
+      {/* Show DocumentsTable for "دسته بندی جدید" tab */}
+      {activeTab === "new" && <DocumentsTable />}
+
+      {/* Show empty state for "اموزش های مرتبط" tab */}
+      {activeTab === "related" && <RelatedTrainings />}
     </div>
   );
 }

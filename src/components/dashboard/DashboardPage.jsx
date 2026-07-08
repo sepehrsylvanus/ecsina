@@ -4,6 +4,7 @@ import Header from "./Header";
 import DashboardTabs from "./DashboardTabs";
 import QuickActions from "./QuickActions";
 import DocumentsList from "./DocumentsList";
+import RelatedTrainings from "./RelatedTrainings";
 
 function DashboardPage() {
   return (
@@ -19,6 +20,9 @@ function DashboardPage() {
 
       {/* اسناد */}
       <DocumentsList />
+
+      {/* آموزش های مرتبط */}
+      <RelatedTrainings />
     </div>
   );
 }
