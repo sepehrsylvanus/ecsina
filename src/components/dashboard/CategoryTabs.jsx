@@ -1,39 +1,48 @@
-// components/dashboard/CategoryTabs.jsx
 "use client";
 
-import { useState } from "react";
-import { Trash2, ClipboardList, Folder, FolderPlus } from "lucide-react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import {
+  HiOutlineFolderPlus,
+  HiOutlineFolder,
+  HiOutlineClipboardDocumentList,
+  HiOutlineTrash,
+} from "react-icons/hi2";
+import ActionGrid from "@/components/UI/ActionGrid";
 
 const tabs = [
-  { id: "new", label: "دسته بندی جدید", icon: FolderPlus },
-  { id: "categories", label: "دسته بندی ها", icon: Folder },
-  { id: "related", label: "اموزش های مرتبط", icon: ClipboardList },
-  { id: "trash", label: "حذف موقت", icon: Trash2 },
+  {
+    id: "new",
+    label: "دسته بندی جدید",
+    icon: HiOutlineFolderPlus,
+    disabled: true,
+  },
+  { id: "categories", label: "دسته بندی ها", icon: HiOutlineFolder },
+  {
+    id: "related",
+    label: "اموزش های مرتبط",
+    icon: HiOutlineClipboardDocumentList,
+  },
+  { id: "trash", label: "حذف موقت", icon: HiOutlineTrash },
 ];
 
 function CategoryTabs() {
-  const [activeTab, setActiveTab] = useState("categories");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const activeTab = searchParams.get("category") || "categories";
+
+  const handleTabClick = (tab) => {
+    router.push(`${pathname}?category=${tab.id}`);
+  };
 
   return (
-    <div className="flex items-center justify-between gap-4 mb-8" dir="rtl">
-      {tabs.map((tab) => {
-        const Icon = tab.icon;
-        const isActive = activeTab === tab.id;
-        return (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-6 py-3 rounded-2xl transition-all shadow-sm ${
-              isActive
-                ? "bg-white border-2 border-gray-800 text-gray-900 font-bold"
-                : "bg-white/60 border border-gray-200 text-gray-700 hover:bg-white"
-            }`}
-          >
-            <span className="text-sm whitespace-nowrap">{tab.label}</span>
-            <Icon className="w-4 h-4" />
-          </button>
-        );
-      })}
+    <div className="px-4 md:px-8 mt-6 md:mt-10">
+      <ActionGrid
+        items={tabs}
+        activeId={activeTab}
+        onItemClick={handleTabClick}
+      />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Header from "./Header";
 import DashboardTabs from "./DashboardTabs";
 import QuickActions from "./QuickActions";
 import DocumentsList from "./DocumentsList";
@@ -7,6 +8,9 @@ import DocumentsList from "./DocumentsList";
 function DashboardPage() {
   return (
     <div className="min-h-screen bg-secondary-1 pb-16">
+      {/* هدر */}
+      <Header />
+
       {/* تب‌های اصلی */}
       <DashboardTabs />
 

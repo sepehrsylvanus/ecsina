@@ -1,7 +1,6 @@
 "use client";
 
 import { FaCheck } from "react-icons/fa6";
-import Link from "next/link";
 
 // Mock data برای فعالیت‌ها
 const activities = [
@@ -87,14 +86,11 @@ function ActivitiesTimeline() {
           ))}
         </div>
 
-        {/* See More Link */}
+        {/* See More Link (disabled) */}
         <div className="flex items-center justify-center mt-12 md:mt-16">
-          <Link
-            href="/dashboard/activities/all"
-            className="text-black hover:text-primary-7 text-sm md:text-base font-medium underline underline-offset-4 decoration-black hover:decoration-primary-7 transition-colors cursor-pointer"
-          >
+          <span className="text-gray-400 text-sm md:text-base font-medium underline underline-offset-4 decoration-gray-400 cursor-not-allowed">
             مشاهده بیشتر
-          </Link>
+          </span>
         </div>
       </div>
     </div>

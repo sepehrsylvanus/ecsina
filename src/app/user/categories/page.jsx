@@ -1,8 +1,8 @@
 import EditPage from "@/components/dashboard/EditPage";
 
 export const metadata = {
-  title: "ویرایش | اکسینا",
-  description: "ویرایش اسناد",
+  title: "دسته بندی ها | اکسینا",
+  description: "مدیریت دسته بندی ها",
 };
 
 export default function Page() {

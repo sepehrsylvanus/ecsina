@@ -71,6 +71,7 @@ function DocumentsTable() {
 
       {/* هدر جدول */}
       <div className="grid grid-cols-12 gap-4 px-6 py-3 text-sm text-gray-600 font-medium">
+        <div className="col-span-1"></div>
         <div className="col-span-3 text-right">نام سند</div>
         <div className="col-span-2 text-center flex items-center justify-center gap-1">
           آخرین بازدید
@@ -81,7 +82,7 @@ function DocumentsTable() {
           اولویت
           <ChevronDown className="w-3 h-3" />
         </div>
-        <div className="col-span-2 text-center">ویرایش و دانلود</div>
+        <div className="col-span-1 text-center">ویرایش و دانلود</div>
       </div>
 
       {/* ردیف‌های اسناد */}
@@ -91,6 +92,13 @@ function DocumentsTable() {
             key={doc.id}
             className="grid grid-cols-12 gap-4 items-center bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-4 hover:shadow-md transition-shadow"
           >
+            {/* منوی سه نقطه */}
+            <div className="col-span-1 flex justify-center">
+              <button className="p-1 text-gray-400 hover:text-gray-600">
+                <MoreVertical className="w-5 h-5" />
+              </button>
+            </div>
+
             {/* نام سند */}
             <div className="col-span-3 flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
@@ -127,15 +135,12 @@ function DocumentsTable() {
             </div>
 
             {/* دکمه‌ها */}
-            <div className="col-span-2 flex items-center justify-center gap-2">
+            <div className="col-span-1 flex items-center justify-center gap-1">
               <button className="p-2 rounded-lg border border-blue-500 text-blue-600 hover:bg-blue-50 transition-colors">
                 <Edit className="w-4 h-4" />
               </button>
               <button className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">
                 <Download className="w-4 h-4" />
-              </button>
-              <button className="p-1 text-gray-400 hover:text-gray-600">
-                <MoreVertical className="w-5 h-5" />
               </button>
             </div>
           </div>

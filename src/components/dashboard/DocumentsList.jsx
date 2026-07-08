@@ -1,63 +1,63 @@
+// components/dashboard/CategoriesList.jsx
 "use client";
-
-import DocumentCard from "./DocumentCard";
+import CategoryCard from "../categories/CategoryCard";
 
 // Mock data
-const documents = [
+const categories = [
   {
     id: 1,
-    title: "بیزنس مدل تجاری",
-    size: "9mg",
-    date: "14 اردیبهشت ، 1404",
-    status: "uploaded", // بارگذاری شده
-    statusDate: "1404.01.29",
-    quality: "متوسط",
+    title: "بیزنس مدل ...",
+    date: "12 اردیبهشت ، 1404",
+    count: 3,
   },
   {
     id: 2,
-    title: "بیزنس مدل تجاری",
-    size: "9mg",
-    date: "14 اردیبهشت ، 1404",
-    status: "downloaded", // دانلود شده
-    statusDate: "1404.01.02",
-    quality: "متوسط",
+    title: "بیزنس مدل ...",
+    date: "12 اردیبهشت ، 1404",
+    count: 3,
   },
   {
     id: 3,
-    title: "بیزنس مدل تجاری",
-    size: "9mg",
-    date: "14 اردیبهشت ، 1404",
-    status: "pending", // در حال بررسی
-    statusDate: "1404.02.02",
-    quality: "متوسط",
+    title: "بیزنس مدل ...",
+    date: "12 اردیبهشت ، 1404",
+    count: 3,
   },
   {
     id: 4,
-    title: "بیزنس مدل تجاری",
-    size: "9mg",
-    date: "14 اردیبهشت ، 1404",
-    status: "reviewed", // بازبینی شده
-    statusDate: "1404.02.02",
-    quality: "متوسط",
+    title: "بیزنس مدل ...",
+    date: "12 اردیبهشت ، 1404",
+    count: 3,
+  },
+  {
+    id: 5,
+    title: "بیزنس مدل ...",
+    date: "12 اردیبهشت ، 1404",
+    count: 3,
+  },
+  {
+    id: 6,
+    title: "بیزنس مدل ...",
+    date: "12 اردیبهشت ، 1404",
+    count: 3,
   },
 ];
 
-function DocumentsList() {
+function CategoriesList() {
   return (
-    <div className="px-4 md:px-8 mt-12 md:mt-16">
+    <div className="px-4 md:px-8 mt-10 md:mt-14">
       {/* Title */}
-      <h2 className="text-center text-black text-2xl md:text-3xl font-bold mb-8">
-        اسناد
+      <h2 className="text-center text-black text-xl md:text-2xl font-bold mb-8">
+        دسته بندی ها
       </h2>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-        {documents.map((doc) => (
-          <DocumentCard key={doc.id} document={doc} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+        {categories.map((category) => (
+          <CategoryCard key={category.id} category={category} />
         ))}
       </div>
     </div>
   );
 }
 
-export default DocumentsList;
+export default CategoriesList;
