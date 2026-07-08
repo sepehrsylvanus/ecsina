@@ -7,8 +7,8 @@ import { LuCopy } from "react-icons/lu";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 const tabs = [
-  { id: 1, icon: HiOutlineDocumentText, label: "ویرایش", href: "/user/edit" },
-  { id: 2, icon: IoHome, label: "خانه", href: "/user" },
+  { id: 1, icon: IoHome, label: "خانه", href: "/user" },
+  { id: 2, icon: HiOutlineDocumentText, label: "ویرایش", href: "/user/edit" },
   { id: 3, icon: LuCopy, label: "قالب‌ها", href: "/user/templates" },
   { id: 4, icon: HiOutlineArchiveBox, label: "آرشیو", href: "/user/archive" },
   { id: 5, icon: FaRegPenToSquare, label: "یادداشت‌ها", href: "/user/notes" },
