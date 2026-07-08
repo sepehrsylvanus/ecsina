@@ -6,6 +6,7 @@ import CategoryTabs from "./CategoryTabs";
 import DocumentsTable from "./DocumentTable";
 import DocumentsList from "./DocumentsList";
 import RelatedTrainings from "./RelatedTrainings";
+import TrashList from "../categories/TrashList";
 
 function EditPage() {
   const searchParams = useSearchParams();
@@ -24,6 +25,9 @@ function EditPage() {
 
       {/* Show empty state for "اموزش های مرتبط" tab */}
       {activeTab === "related" && <RelatedTrainings />}
+
+      {/* Show empty state for "حذف موقت" tab */}
+      {activeTab === "trash" && <TrashList />}
     </div>
   );
 }
