@@ -1,28 +1,16 @@
 "use client";
 
-import Header from "./Header";
-import DashboardTabs from "./DashboardTabs";
 import QuickActions from "./QuickActions";
-import DocumentsList from "./DocumentsList";
-import RelatedTrainings from "./RelatedTrainings";
+import DocumentCards from "./DocumentCards";
 
 function DashboardPage() {
   return (
-    <div className="min-h-screen bg-secondary-1 pb-16">
-      {/* هدر */}
-      <Header />
-
-      {/* تب‌های اصلی */}
-      <DashboardTabs />
-
+    <div>
       {/* دسترسی سریع (کارت‌های بالا) */}
       <QuickActions />
 
       {/* اسناد */}
-      <DocumentsList />
-
-      {/* آموزش های مرتبط */}
-      <RelatedTrainings />
+      <DocumentCards />
     </div>
   );
 }

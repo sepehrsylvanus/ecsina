@@ -10,13 +10,23 @@ const tabs = [
   { id: 1, icon: IoHome, label: "خانه", href: "/user" },
   {
     id: 2,
-    icon: HiOutlineDocumentText,
+    icon: LuCopy,
     label: "ویرایش",
     href: "/user/categories",
   },
-  { id: 3, icon: LuCopy, label: "قالب‌ها", href: "/user/templates" },
+  {
+    id: 3,
+    icon: HiOutlineDocumentText,
+    label: "قالب\u200cها",
+    href: "/user/templates",
+  },
   { id: 4, icon: HiOutlineArchiveBox, label: "آرشیو", href: "/user/archive" },
-  { id: 5, icon: FaRegPenToSquare, label: "یادداشت‌ها", href: "/user/notes" },
+  {
+    id: 5,
+    icon: FaRegPenToSquare,
+    label: "یادداشت\u200cها",
+    href: "/user/notes",
+  },
 ];
 
 function DashboardTabs() {
@@ -24,8 +34,15 @@ function DashboardTabs() {
   const pathname = usePathname();
 
   const getActiveTabId = () => {
-    const currentTab = tabs.find((tab) => tab.href === pathname);
-    return currentTab ? currentTab.id : 2;
+    // Sort tabs by href length (longest first) to match more specific paths first
+    const sortedTabs = [...tabs].sort((a, b) => b.href.length - a.href.length);
+    const currentTab = sortedTabs.find(
+      (tab) =>
+        pathname === tab.href ||
+        pathname.startsWith(tab.href + "/") ||
+        pathname.startsWith(tab.href + "?"),
+    );
+    return currentTab ? currentTab.id : 1;
   };
 
   const activeTab = getActiveTabId();

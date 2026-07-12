@@ -1,7 +1,6 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import DashboardTabs from "./DashboardTabs";
 import CategoryTabs from "./CategoryTabs";
 import DocumentsTable from "./DocumentTable";
 import DocumentsList from "./DocumentsList";
@@ -13,8 +12,7 @@ function EditPage() {
   const activeTab = searchParams.get("category") || "categories";
 
   return (
-    <div className="min-h-screen bg-secondary-1 pb-16">
-      <DashboardTabs />
+    <div>
       <CategoryTabs />
 
       {/* Show DocumentsList for "دسته بندی ها" tab */}
