@@ -28,7 +28,7 @@ const actions = [
     id: 4,
     title: "سوالات شما",
     icon: HiOutlineChatBubbleLeftRight,
-    href: "/user/questions",
+    href: "/user/archive",
   },
 ];
 
