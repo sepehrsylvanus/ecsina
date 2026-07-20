@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import EditPage from "@/components/dashboard/EditPage";
 
 export const metadata = {
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <EditPage />;
+  return (
+    <Suspense fallback={<div>در حال بارگذاری...</div>}>
+      <EditPage />
+    </Suspense>
+  );
 }
