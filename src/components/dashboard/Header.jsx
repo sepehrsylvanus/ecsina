@@ -1,16 +1,35 @@
 "use client";
 
-import { Bell, Search, HelpCircle } from "lucide-react";
+import { useState } from "react";
+import {
+  Bell,
+  Search,
+  HelpCircle,
+  User,
+  LogOut,
+  ChevronDown,
+} from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { logoutUser } from "@/services/auth/login";
 
 function Header() {
+  const router = useRouter();
+  const [imageError, setImageError] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleLogout = () => {
+    logoutUser();
+    router.push("/auth/login");
+  };
+
   return (
     <header className="w-full py-4 px-4 md:px-8">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <Image
-            src="/assets/logo.png"
+            src="/assets/icons/Logo.svg"
             alt="Logo"
             width={40}
             height={40}
@@ -44,17 +63,52 @@ function Header() {
           </div>
         </div>
 
-        {/* Profile Picture */}
-        <div className="flex items-center">
-          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200">
-            <Image
-              src="/assets/profile.jpg"
-              alt="Profile"
-              width={40}
-              height={40}
-              className="object-cover"
-            />
-          </div>
+        {/* Profile Picture with Avatar Fallback and Dropdown */}
+        <div className="relative flex items-center">
+          <button
+            onClick={() => setShowDropdown(!showDropdown)}
+            className="flex items-center gap-1"
+          >
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200 flex items-center justify-center">
+              {!imageError ? (
+                <Image
+                  src="/assets/profile.jpg"
+                  alt="Profile"
+                  width={40}
+                  height={40}
+                  className="object-cover"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <div className="w-full h-full bg-primary-7 flex items-center justify-center">
+                  <User className="w-5 h-5 text-white" />
+                </div>
+              )}
+            </div>
+            <ChevronDown className="w-4 h-4 text-gray-500" />
+          </button>
+
+          {/* Dropdown Menu */}
+          {showDropdown && (
+            <>
+              <div
+                className="fixed inset-0 z-10"
+                onClick={() => setShowDropdown(false)}
+              />
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-20 overflow-hidden">
+                <button
+                  onClick={() => {
+                    setShowDropdown(false);
+                    handleLogout();
+                  }}
+                  className="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>خروج</span>
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </header>
