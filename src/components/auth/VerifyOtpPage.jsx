@@ -45,14 +45,13 @@ function VerifyOtpPage() {
     }
   }, [router]);
 
-  // شمارش معکوس تایمر
+  // شمارش معکوس: interval فقط یک بار ساخته می‌شود
   useEffect(() => {
-    if (timer <= 0) return;
     const interval = setInterval(() => {
       setTimer((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
     return () => clearInterval(interval);
-  }, [timer]);
+  }, []);
 
   // فرمت تایمر به شکل mm:ss با اعداد فارسی
   const formatTimer = (seconds) => {

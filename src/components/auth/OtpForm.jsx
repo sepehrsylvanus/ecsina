@@ -25,18 +25,21 @@ const CodeVerificationForm = ({ phoneNumber, onBack }) => {
     return `${min}:${sec}`;
   };
 
+  // setCanResend وقتی تایمر به صفر رسید
   useEffect(() => {
-    if (timeLeft <= 0) {
+    if (timeLeft === 0) {
       setCanResend(true);
-      return;
     }
+  }, [timeLeft]);
 
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
+  // شمارش معکوس: interval فقط یک بار ساخته می‌شود و عدد هرگز منفی نمی‌شود
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => Math.max(prev - 1, 0));
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, [timeLeft]);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleResend = () => {
     console.log("Resend code triggered");

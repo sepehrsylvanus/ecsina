@@ -40,24 +40,36 @@ export default function TemplatesPage() {
     setIsDragging(false);
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
+  const intervalRef = useRef(null);
 
-    // Simulate upload process
+  // پاک کردن interval آپلود هنگام unmount
+  useEffect(() => {
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const startUploadSimulation = () => {
+    clearInterval(intervalRef.current);
     setIsUploading(true);
     setUploadProgress(0);
 
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setUploadProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(interval);
+          clearInterval(intervalRef.current);
           setIsUploading(false);
           return 100;
         }
         return prev + 10;
       });
     }, 200);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+
+    // Simulate upload process
+    startUploadSimulation();
   };
 
   const handleClick = () => {
@@ -68,19 +80,7 @@ export default function TemplatesPage() {
     const file = e.target.files?.[0];
     if (file) {
       // Simulate upload process
-      setIsUploading(true);
-      setUploadProgress(0);
-
-      const interval = setInterval(() => {
-        setUploadProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(interval);
-            setIsUploading(false);
-            return 100;
-          }
-          return prev + 10;
-        });
-      }, 200);
+      startUploadSimulation();
     }
   };
 

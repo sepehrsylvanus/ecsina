@@ -92,7 +92,6 @@ const allComents = [
 const AllComments = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const timer = useRef(null);
 
   const [sliderRef, slider] = useKeenSlider({
     loop: true,
@@ -115,14 +114,14 @@ const AllComments = () => {
 
   //  Autoplay
   useEffect(() => {
-    if (!slider.current) return;
+    if (!loaded) return;
 
-    timer.current = setInterval(() => {
+    const interval = setInterval(() => {
       slider.current?.next();
     }, 3000);
 
-    return () => clearInterval(timer.current);
-  }, [slider]);
+    return () => clearInterval(interval);
+  }, [loaded, slider]);
 
   return (
     <div className="container mt-16 md:mt-48">

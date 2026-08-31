@@ -23,6 +23,26 @@ axiosInstance.interceptors.request.use(
 );
 
 // Response interceptor to handle token refresh
+// یک promise مشترک تا در صورت 401 همزمانِ چند request، فقط یک بار refresh شود
+let refreshPromise = null;
+
+const refreshAccessToken = () => {
+  if (!refreshPromise) {
+    refreshPromise = axios
+      .post("https://ecsina.com/api/token/refresh/", {
+        refresh: localStorage.getItem("refreshToken"),
+      })
+      .then(({ data }) => {
+        localStorage.setItem("accessToken", data.access);
+        return data.access;
+      })
+      .finally(() => {
+        refreshPromise = null;
+      });
+  }
+  return refreshPromise;
+};
+
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -37,14 +57,9 @@ axiosInstance.interceptors.response.use(
           throw new Error("No refresh token available");
         }
 
-        const { data } = await axios.post(
-          "https://ecsina.com/api/token/refresh/",
-          { refresh: refreshToken },
-        );
+        const accessToken = await refreshAccessToken();
 
-        localStorage.setItem("accessToken", data.access);
-
-        originalRequest.headers.Authorization = `Bearer ${data.access}`;
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         localStorage.removeItem("accessToken");

@@ -46,7 +46,6 @@ const products = [
 
 const RecommendedProducts = () => {
   const [loaded, setLoaded] = useState(false);
-  const timer = useRef(null);
 
   const [sliderRef, slider] = useKeenSlider({
     loop: true,
@@ -72,12 +71,13 @@ const RecommendedProducts = () => {
   });
 
   useEffect(() => {
-    if (!slider.current) return;
-    timer.current = setInterval(() => {
+    if (!loaded) return;
+
+    const interval = setInterval(() => {
       slider.current?.next();
     }, 4000);
-    return () => clearInterval(timer.current);
-  }, [slider]);
+    return () => clearInterval(interval);
+  }, [loaded, slider]);
 
   return (
     <div className="container mx-auto px-4 mt-16 md:mt-24">
