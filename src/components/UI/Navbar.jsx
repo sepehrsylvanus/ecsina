@@ -116,9 +116,19 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <Link href="/auth">
-          <Button icon={"/assets/icons/Arrow.svg"}>ثبت نام</Button>
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/auth/login">
+            <Button
+              variant="outline"
+              className="text-primary-7 text-xs md:text-xl hover:bg-primary-7 hover:text-white"
+            >
+              ورود
+            </Button>
+          </Link>
+          <Link href="/auth">
+            <Button icon={"/assets/icons/Arrow.svg"}>ثبت نام</Button>
+          </Link>
+        </div>
       </nav>
       {/* Mobile */}
       <div className="block md:hidden">

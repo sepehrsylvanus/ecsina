@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { IoClose, IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { GoArrowUpLeft } from "react-icons/go";
+import { HiOutlineLogin } from "react-icons/hi";
 
 function QuickLoginPage() {
   const router = useRouter();
@@ -88,8 +89,16 @@ function QuickLoginPage() {
 
         {/* Body */}
         <div className="px-6 md:px-12 py-8 md:py-10">
-          {/* Forgot Password Link */}
-          <div className="flex justify-end mb-6">
+          {/* Top Bar */}
+          <div className="flex items-center justify-between mb-6">
+            <Link
+              href="/auth/login"
+              className="flex items-center gap-2 text-primary-7 hover:text-primary-8 transition-colors font-semibold text-sm md:text-base border border-primary-7/30 hover:border-primary-7 rounded-lg px-3 py-1.5"
+            >
+              <HiOutlineLogin size={22} />
+              <span>بازگشت به ورود عادی</span>
+            </Link>
+
             <Link
               href="/forgot-password"
               className="text-primary-7 hover:text-primary-8 transition-colors text-sm md:text-base font-medium border border-primary-7/30 hover:border-primary-7 rounded-lg px-3 py-1"

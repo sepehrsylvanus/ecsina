@@ -23,6 +23,16 @@ const MobileMenu = ({ links }) => {
             <GiHamburgerMenu size={33} />
           </button>
 
+          <Link href="/auth/login">
+            <Button
+              variant="outline"
+              className="text-primary-7 text-xs hover:bg-primary-7 hover:text-white"
+            >
+              ورود
+            </Button>
+          </Link>
+
+
           <Link href="/about">
             <Button icon={"/assets/icons/Arrow.svg"}>ثبت نام</Button>
           </Link>

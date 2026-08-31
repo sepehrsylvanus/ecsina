@@ -1,7 +1,7 @@
 // components/dashboard/TrainingRow.jsx
 "use client";
 
-import { FiPlay, FiImage } from "react-icons/fi";
+import { FiPlay, FiFileText } from "react-icons/fi";
 import { HiOutlineBookOpen } from "react-icons/hi2";
 import { TbMapPin } from "react-icons/tb";
 
@@ -30,7 +30,7 @@ function TrainingRow({ training }) {
               key={i}
               className="w-10 h-10 rounded-lg border border-primary-7 flex items-center justify-center text-primary-7 hover:bg-primary-0 transition-colors"
             >
-              <FiImage className="w-5 h-5" />
+              <FiFileText className="w-5 h-5" />
             </button>
           ))}
         </div>
@@ -78,7 +78,7 @@ function TrainingRow({ training }) {
                 key={i}
                 className="w-9 h-9 rounded-lg border border-primary-7 flex items-center justify-center text-primary-7"
               >
-                <FiImage className="w-4 h-4" />
+                <FiFileText className="w-4 h-4" />
               </button>
             ))}
           </div>
