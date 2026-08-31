@@ -269,3 +269,21 @@ body {
     color: #9ca3af;
   }
 }
+
+/* استایل چاپ — فقط محتوای یادداشت */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .notes-editor,
+  .notes-editor * {
+    visibility: visible;
+  }
+  .notes-editor {
+    position: absolute;
+    inset: 0;
+    max-height: none;
+    overflow: visible;
+    padding: 1rem;
+  }
+}
