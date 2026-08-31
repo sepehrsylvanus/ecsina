@@ -16,6 +16,7 @@
     "fs-extra": "^11.3.0",
     "keen-slider": "^6.8.6",
     "lucide-react": "^1.23.0",
+    "mammoth": "^1.12.2",
     "next": "^15.5.19",
     "node-html-parser": "^7.0.1",
     "postcss": "^8.5.3",

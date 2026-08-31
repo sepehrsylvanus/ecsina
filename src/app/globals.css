@@ -254,4 +254,18 @@ body {
   .shadow-dropdown{
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
   }
+
+  /* ویرایشگر یادداشت‌ها */
+  .notes-editor h1 { font-size: 1.5rem; font-weight: 700; margin: 0.8em 0 0.4em; }
+  .notes-editor h2 { font-size: 1.25rem; font-weight: 700; margin: 0.7em 0 0.35em; }
+  .notes-editor p { margin: 0.4em 0; }
+  .notes-editor ul { list-style: disc; padding-inline-start: 1.5em; margin: 0.4em 0; }
+  .notes-editor ol { list-style: decimal; padding-inline-start: 1.5em; margin: 0.4em 0; }
+  .notes-editor img { max-width: 100%; height: auto; border-radius: 0.5rem; }
+  .notes-editor table { border-collapse: collapse; }
+  .notes-editor td, .notes-editor th { border: 1px solid #d1d5db; padding: 0.4rem 0.6rem; }
+  .notes-editor:empty::before {
+    content: "محتوای یادداشت را اینجا بنویسید...";
+    color: #9ca3af;
+  }
 }
