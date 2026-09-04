@@ -1,5 +1,5 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://ecsina.com/api";
+const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION || "v1";
 
 export const API_CONFIG = {
   headers: {
@@ -15,5 +15,8 @@ export const API_ENDPOINTS = {
   },
   CATEGORIES: {
     ALL: `${BASE_URL}/${API_VERSION}/Category`,
+  },
+  AUTH: {
+    VERIFY_OTP: `${BASE_URL}/${API_VERSION}/accounts/auth/verify-otp/`,
   },
 };

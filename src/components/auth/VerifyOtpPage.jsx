@@ -4,10 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { IoClose } from "react-icons/io5";
 import { GoArrowUpLeft } from "react-icons/go";
-import { HiArrowLeft } from "react-icons/hi";
-
-// 🔐 کد صحیح hard code شده
-const CORRECT_CODE = "12345";
+import { verifyOtp } from "@/services/auth/login";
+import toast from "react-hot-toast";
 
 function VerifyOtpPage() {
   const router = useRouter();
@@ -76,23 +74,25 @@ function VerifyOtpPage() {
 
     setLoading(true);
 
-    // شبیه‌سازی درخواست تایید
-    setTimeout(() => {
-      setLoading(false);
+    // بررسی کد از طریق API
+    const { data, error } = await verifyOtp(phone, code);
+    setLoading(false);
 
-      // ✅ چک کردن کد hard code شده
-      if (code === CORRECT_CODE) {
-        console.log("Login successful for phone:", phone);
-        if (typeof window !== "undefined") {
-          localStorage.setItem("isLoggedIn", "true");
-          localStorage.removeItem("phone");
-        }
-        router.push("/");
-      } else {
-        // ❌ کد اشتباه
-        setError("کد اشتباه وارد شده است ...");
-      }
-    }, 600);
+    if (error || data?.detail !== "success") {
+      // ❌ کد اشتباه
+      setError("کد اشتباه وارد شده است ...");
+      return;
+    }
+
+    // ✅ ورود موفق
+    if (typeof window !== "undefined") {
+      localStorage.setItem("isLoggedIn", "true");
+      // میدل‌ور محافظت /user کوکی isLoggedIn را چک می‌کند
+      document.cookie = "isLoggedIn=true; path=/; max-age=86400";
+      localStorage.removeItem("phone");
+    }
+    toast.success("ورود با موفقیت انجام شد. تا چند لحظه‌ی دیگر به داشبورد منتقل میشوید...");
+    setTimeout(() => router.push("/user"), 2500);
   };
 
   // ارسال مجدد کد

@@ -1,5 +1,32 @@
 import axiosInstance from "@/utils/axiosInstance";
 import { handleAxiosError } from "@/utils/axiosHelpers";
+import { API_ENDPOINTS } from "@/constants/baseUrl";
+
+/**
+ * تایید کد OTP
+ * @param {string} identifier - شماره موبایل
+ * @param {string} code - کد تایید
+ * @returns {{ data: object|null, error: string|null }}
+ */
+export const verifyOtp = async (identifier, code) => {
+  try {
+    const { data } = await axiosInstance.post(API_ENDPOINTS.AUTH.VERIFY_OTP, {
+      identifier,
+      code,
+    });
+
+    return {
+      data,
+      error: null,
+    };
+  } catch (error) {
+    const errorMessage = handleAxiosError(error);
+    return {
+      data: null,
+      error: errorMessage,
+    };
+  }
+};
 
 export const loginUser = async (email, password) => {
   try {

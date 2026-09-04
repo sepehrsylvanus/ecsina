@@ -8,8 +8,8 @@ import { IoClose } from "react-icons/io5";
 import { GoArrowUpLeft } from "react-icons/go";
 import { HiOutlineLogin, HiArrowRight } from "react-icons/hi";
 
-// تولید کد تایید رندوم ۵ رقمی
-const generateOtp = () => Math.floor(10000 + Math.random() * 90000).toString();
+import { verifyOtp } from "@/services/auth/login";
+import toast from "react-hot-toast";
 
 // تبدیل اعداد انگلیسی به فارسی
 const toFa = (str) => String(str).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
@@ -26,7 +26,6 @@ function LoginPage() {
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
 
-  const [otp, setOtp] = useState("");
   const [code, setCode] = useState("");
   const [timer, setTimer] = useState(120);
   const [codeError, setCodeError] = useState("");
@@ -72,16 +71,14 @@ function LoginPage() {
     if (typeof window !== "undefined") {
       localStorage.setItem("phone", phone);
     }
-    // تولید OTP رندوم
-    setOtp(generateOtp());
     setTimer(120);
     setCode("");
     setCodeError("");
     setStep("otp");
   };
 
-  // مرحله ۲: تایید کد
-  const handleVerify = (e) => {
+  // مرحله ۲: تایید کد از طریق API
+  const handleVerify = async (e) => {
     e.preventDefault();
     if (isExpired) return;
     if (!code) {
@@ -89,26 +86,28 @@ function LoginPage() {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      if (code === otp) {
-        // ورود موفق
-        if (typeof window !== "undefined") {
-          localStorage.setItem("isLoggedIn", "true");
-          // میدل‌ور محافظت /user کوکی isLoggedIn را چک می‌کند
-          document.cookie = "isLoggedIn=true; path=/; max-age=86400";
-          localStorage.removeItem("phone");
-        }
-        router.push("/user");
-      } else {
-        setCodeError("کد اشتباه وارد شده است ...");
-      }
-    }, 600);
+
+    const { data, error } = await verifyOtp(phone, code);
+    setLoading(false);
+
+    if (error || data?.detail !== "success") {
+      setCodeError("کد اشتباه وارد شده است ...");
+      return;
+    }
+
+    // ورود موفق
+    if (typeof window !== "undefined") {
+      localStorage.setItem("isLoggedIn", "true");
+      // میدل‌ور محافظت /user کوکی isLoggedIn را چک می‌کند
+      document.cookie = "isLoggedIn=true; path=/; max-age=86400";
+      localStorage.removeItem("phone");
+    }
+    toast.success("ورود با موفقیت انجام شد. تا چند لحظه‌ی دیگر به داشبورد منتقل میشوید...");
+    setTimeout(() => router.push("/user"), 2500);
   };
 
   // ارسال مجدد کد
   const handleResend = () => {
-    setOtp(generateOtp());
     setTimer(120);
     setCode("");
     setCodeError("");
@@ -119,7 +118,6 @@ function LoginPage() {
     setStep("phone");
     setCode("");
     setCodeError("");
-    setOtp("");
   };
 
   const handleClose = () => router.push("/");
@@ -295,12 +293,6 @@ function LoginPage() {
                   </button>
                 )}
               </div>
-
-              {/* نمایش کد رندوم تولید شده (به جای پیامک واقعی) */}
-              <p className="text-center text-primary-7 text-sm md:text-base mb-4">
-                کد تایید شما:{" "}
-                <span className="font-bold tracking-widest">{toFa(otp)}</span>
-              </p>
 
               {/* Expired error */}
               {isExpired && (
